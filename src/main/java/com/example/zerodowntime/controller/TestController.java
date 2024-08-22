@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
     private final ServletWebServerApplicationContext webServerAppContext;
-    private static final String RESPONSE_BODY_MESSAGE = "버전 1 응답값입니다. 무중단 배포 도입 전입니다.";
+    private static final String RESPONSE_BODY_MESSAGE = "버전 2 응답값입니다. 무중단 배포 도입했습니다.";
 
     public TestController(ServletWebServerApplicationContext webServerAppContext) {
         this.webServerAppContext = webServerAppContext;
