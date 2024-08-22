@@ -55,10 +55,10 @@ jobs:
           ssh-keyscan ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
       - name: Rename and transfer artifact
         run: |
-          mv *.jar app.jar
-          scp app.jar ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:~/cicd/
+          mv *.jar zerodowntime.jar
+          scp zerodowntime.jar ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:~/cicd/
       - name: Execute remote commands
         run: |
           ssh -v ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "sudo fuser -k 8081/tcp || true"
           ssh -v ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "sudo fuser -k 8082/tcp || true"
-          ssh -v ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "sudo nohup /usr/bin/java -jar -Dserver.port=8081 ~/cicd/app.jar > ~/cicd/nohup.log 2>&1 &"
+          ssh -v ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "sudo nohup /usr/bin/java -jar -Dserver.port=8081 ~/cicd/zerodowntime.jar > ~/cicd/nohup.log 2>&1 &"
